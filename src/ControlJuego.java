@@ -44,6 +44,31 @@ public class ControlJuego {
 		//Calculo para todas las posiciones que no tienen minas, cuántas minas hay alrededor.
 		
 		//Pongo la puntuación a cero:
+		
+		ArrayList<Integer> numeros = new ArrayList<Integer>();
+		for (int i = 0; i <=99; i++) {
+			numeros.get(i));
+			
+			
+		}
+		Random rd = new Random();
+		
+		for (int i = 0; i < 20; i++) {
+			int aleatorio = rd.nextInt(numeros.size());
+			if(numeros.get(aleatorio)==MINA) {
+				i--;
+			}else {
+				numeros.set(aleatorio, MINA);
+			}
+		}
+		int contador = 99;
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
+				tablero[i][j] = numeros.get(contador);
+				contador--;
+			}
+			
+		}
 
 		
 	}
