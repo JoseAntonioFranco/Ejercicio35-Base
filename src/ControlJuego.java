@@ -47,7 +47,7 @@ public class ControlJuego {
 		
 		ArrayList<Integer> numeros = new ArrayList<Integer>();
 		for (int i = 0; i <=99; i++) {
-			numeros.get(i));
+			numeros.add(0);
 			
 			
 		}
