@@ -83,6 +83,7 @@ public class ControlJuego {
 			}
 
 		}
+		puntuacion=0;
 		depurarTablero();
 
 	}
@@ -131,6 +132,12 @@ public class ControlJuego {
 	 */
 	public boolean abrirCasilla(int i, int j) {
 
+		if(tablero[i][j]==MINA) {
+			return false;
+		}
+		puntuacion++;
+		return true;
+		
 	}
 
 	/**
@@ -141,6 +148,7 @@ public class ControlJuego {
 	 *         minas.
 	 **/
 	public boolean esFinJuego() {
+		return puntuacion ==LADO_TABLERO*LADO_TABLERO-MINAS_INICIALES;
 	}
 
 	/**
@@ -172,6 +180,7 @@ public class ControlJuego {
 	 *         celda
 	 */
 	public int getMinasAlrededor(int i, int j) {
+		return tablero[i][j];
 	}
 
 	/**
@@ -180,6 +189,7 @@ public class ControlJuego {
 	 * @return Un entero con la puntuación actual
 	 */
 	public int getPuntuacion() {
+		return puntuacion;
 	}
 
 }
