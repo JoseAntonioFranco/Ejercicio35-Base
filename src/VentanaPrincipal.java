@@ -141,7 +141,7 @@ public class VentanaPrincipal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				juego.inicializarPartida();
-				pantallaPuntuacion.setText(""+0);
+				pantallaPuntuacion.setText("" + 0);
 				for (int i = 0; i < botonesJuego.length; i++) {
 					for (int j = 0; j < botonesJuego[i].length; j++) {
 						panelesJuego[i][j].removeAll();
@@ -182,8 +182,33 @@ public class VentanaPrincipal {
 		pantallaMinasAlrededor.setForeground(correspondenciaColores[minas]);
 		pantallaMinasAlrededor.setHorizontalAlignment(SwingConstants.CENTER);
 		panelesJuego[i][j].add(pantallaMinasAlrededor);
+		if(minas==0) {
+			juego.abrirCasilla(i, j);
+		}
+		abrirAlrededor(i, j);
 
 		refrescarPantalla();
+	}
+
+	public void abrirAlrededor(int i, int j) {
+		if (juego.getMinasAlrededor(i, j) >= 1) {
+			juego.abrirCasilla(i, j);
+		}
+		for (int x = i - 1; x <= i + 1; x++) {
+			for (int y = j - 1; y <= j + 1; y++) {
+				if ((x >= 0) && (y >= 0)) {
+					if ((x <= 9) && (y <= 9)) {
+						if ((juego.getMinasAlrededor(x, y) >= 0) && (juego.getMinasAlrededor(i, j) == 0)
+								&& (panelesJuego[x][y].getComponent(0).getClass().equals(JButton.class))) {
+							mostrarNumMinasAlrededor(x, y);
+							
+							
+						}
+
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -198,11 +223,14 @@ public class VentanaPrincipal {
 	 */
 	public void mostrarFinJuego(boolean porExplosion) {
 		if (porExplosion) {
-			JOptionPane.showMessageDialog(ventana, "Ha explotado una mina, su puntuacion es: "+pantallaPuntuacion.getText(), "Fin del juego", 0);
-			
-			
-		}else {JOptionPane.showMessageDialog(ventana, "Ha abierto todos los botones, su puntuacion es: "+pantallaPuntuacion.getText(), "Fin del juego", 1);
-			
+			JOptionPane.showMessageDialog(ventana,
+					"Ha explotado una mina, su puntuacion es: " + pantallaPuntuacion.getText(), "Fin del juego", 0);
+
+		} else {
+			JOptionPane.showMessageDialog(ventana,
+					"Ha abierto todos los botones, su puntuacion es: " + pantallaPuntuacion.getText(), "Fin del juego",
+					1);
+
 		}
 		for (int i = 0; i < botonesJuego.length; i++) {
 			for (int j = 0; j < botonesJuego[i].length; j++) {

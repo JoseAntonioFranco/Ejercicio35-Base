@@ -35,7 +35,9 @@ public class ActionBoton implements ActionListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(juego.abrirCasilla(i, j)) {
+		
+		int mina = juego.getMinasAlrededor(i, j);
+		if(mina!=-1) {
 			ventana.mostrarNumMinasAlrededor(i, j);
 			ventana.actualizarPuntuacion();
 			if (juego.esFinJuego()) {
